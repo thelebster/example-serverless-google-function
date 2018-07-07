@@ -1,0 +1,25 @@
+service: node-sendgrid-endpoint
+
+app: SERVERLESS_PROJECT_NAME
+tenant: SERVERLESS_USERNAME
+
+provider:
+  name: google
+  runtime: nodejs
+  project: serverless-sendgrid-example
+  credentials: ~/.gcloud/keyfile.json # path must be absolute
+  
+plugins:
+  - serverless-google-cloudfunctions
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+functions:
+  helloWorld:
+    handler: http
+    events:
+      - http: path
